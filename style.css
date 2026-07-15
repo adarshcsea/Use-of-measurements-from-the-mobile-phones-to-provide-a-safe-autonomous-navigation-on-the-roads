@@ -1,0 +1,517 @@
+/* ==========================================================================
+   1. CYBERPUNK HUD THEME SYSTEM CONSTANTS
+   ========================================================================== */
+:root {
+    --bg-space: #060810;
+    --hud-bg: rgba(10, 15, 30, 0.4);
+    --hud-border: rgba(99, 102, 241, 0.15);
+    --text-neon: #f1f5f9;
+    --text-dark: #64748b;
+    
+    --neon-blue: #38bdf8;
+    --neon-blue-glow: rgba(56, 189, 248, 0.25);
+    --neon-green: #34d399;
+    --neon-green-glow: rgba(52, 211, 153, 0.2);
+    --neon-amber: #fbbf24;
+    
+    --font-ui: 'Plus Jakarta Sans', sans-serif;
+    --font-display: 'Space Grotesk', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-space);
+    color: var(--text-neon);
+    font-family: var(--font-ui);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+/* ==========================================================================
+   2. DYNAMIC RADAR BACKGROUND ENVIRONMENT
+   ========================================================================== */
+.radar-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+    opacity: 0.35;
+    background: radial-gradient(circle at 80% 20%, #0f172a 0%, var(--bg-space) 80%);
+}
+
+.radar-circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid rgba(56, 189, 248, 0.08);
+    border-radius: 50%;
+}
+
+.rc1 { width: 400px; height: 400px; }
+.rc2 { width: 800px; height: 800px; }
+
+.radar-line {
+    position: absolute;
+    width: 200vw;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.15), transparent);
+    top: 30%;
+    left: -50vw;
+    transform: rotate(-15deg);
+    animation: sweepLine 8s infinite linear;
+}
+
+@keyframes sweepLine {
+    0% { transform: translate(0, -10vh) rotate(-15deg); }
+    100% { transform: translate(0, 80vh) rotate(-15deg); }
+}
+
+/* ==========================================================================
+   3. BOLD CREATOR HEADER ARCHITECTURE
+   ========================================================================== */
+header {
+    background: rgba(6, 8, 16, 0.85);
+    border-bottom: 1px solid var(--hud-border);
+    backdrop-filter: blur(16px);
+    z-index: 100;
+    position: sticky;
+    top: 0;
+}
+
+.creator-meta {
+    background: linear-gradient(90deg, rgba(99, 102, 241, 0.1), transparent);
+    padding: 0.65rem 5%;
+    display: flex;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    font-size: 0.85rem;
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--text-dark);
+}
+
+.meta-item i {
+    color: var(--neon-blue);
+}
+
+.meta-item strong {
+    color: var(--text-neon);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.brand-logo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 5%;
+}
+
+.brand-logo span {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.highlight { color: var(--neon-blue); }
+
+.pulse-icon {
+    color: var(--neon-blue);
+    text-shadow: 0 0 10px var(--neon-blue-glow);
+    animation: pulseGlow 2.5s infinite ease-in-out;
+}
+
+/* ==========================================================================
+   4. TELEMETRY HERO SECTION
+   ========================================================================== */
+.hero-section {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    align-items: center;
+    padding: 5rem 5% 3rem 5%;
+    gap: 3.5rem;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.tagline {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(56, 189, 248, 0.08);
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    color: #bae6fd;
+    padding: 0.4rem 0.9rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    width: fit-content;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.hero-content h1 {
+    font-family: var(--font-display);
+    font-size: 3.8rem;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -2px;
+}
+
+.text-gradient {
+    background: linear-gradient(to right, var(--neon-blue), #a5b4fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-content p {
+    color: var(--text-dark);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    max-width: 580px;
+}
+
+.hero-cta {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+/* System Core Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.8rem 1.6rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.btn-primary {
+    background: var(--neon-blue);
+    color: #060810;
+    border: 1px solid transparent;
+    box-shadow: 0 4px 15px var(--neon-blue-glow);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(56, 189, 248, 0.4);
+}
+
+.btn-secondary {
+    background: var(--hud-bg);
+    color: var(--text-neon);
+    border: 1px solid var(--hud-border);
+}
+
+.btn-secondary:hover {
+    background: rgba(99, 102, 241, 0.08);
+    border-color: rgba(99, 102, 241, 0.3);
+    transform: translateY(-2px);
+}
+
+.btn-full { width: 100%; justify-content: center; }
+
+/* Floating Functional HUD Cards */
+.hero-visual {
+    position: relative;
+    height: 300px;
+}
+
+.telemetry-card {
+    position: absolute;
+    background: var(--hud-bg);
+    border: 1px solid var(--hud-border);
+    backdrop-filter: blur(12px);
+    padding: 1.25rem;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 260px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+}
+
+.telemetry-card i {
+    font-size: 1.5rem;
+}
+
+.text-blue { color: var(--neon-blue); }
+.text-green { color: var(--neon-green); }
+
+.card-top {
+    top: 15%;
+    left: 10%;
+    animation: hoverMotion 4s infinite ease-in-out;
+}
+
+.card-bottom {
+    bottom: 15%;
+    right: 10%;
+    animation: hoverMotion 4s infinite ease-in-out 2s;
+}
+
+@keyframes hoverMotion {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* ==========================================================================
+   5. SENSOR FUSION REALTIME INTEGRATION DASHBOARD
+   ========================================================================== */
+.dashboard-section {
+    padding: 4rem 5%;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.section-header { text-align: center; }
+.section-header h2 { font-family: var(--font-display); font-size: 2.3rem; margin-bottom: 0.5rem; }
+.section-header p { color: var(--text-dark); }
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    max-width: 1150px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.glass-panel {
+    background: var(--hud-bg);
+    border: 1px solid var(--hud-border);
+    border-radius: 16px;
+    padding: 2rem;
+    backdrop-filter: blur(12px);
+    display: flex;
+    flex-direction: column;
+    min-height: 420px;
+}
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    padding-bottom: 1rem;
+}
+
+.panel-header h3 { font-size: 1.15rem; font-weight: 600; display: flex; align-items: center; gap: 0.6rem; }
+.panel-header h3 i { color: var(--neon-blue); }
+
+.live-indicator {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    border: 1px solid rgba(255,255,255,0.05);
+    padding: 0.25rem 0.6rem;
+    border-radius: 4px;
+}
+
+.live-indicator .dot {
+    width: 6px;
+    height: 6px;
+    background: var(--text-dark);
+    border-radius: 50%;
+}
+
+/* Pipeline Live Toggle Activation States */
+.streaming-active .live-indicator {
+    color: var(--neon-green);
+    border-color: rgba(52, 211, 153, 0.2);
+}
+
+.streaming-active .live-indicator .dot {
+    background: var(--neon-green);
+    box-shadow: 0 0 8px var(--neon-green);
+    animation: indicatorPulse 1s infinite alternate;
+}
+
+@keyframes indicatorPulse {
+    from { opacity: 0.3; } to { opacity: 1; }
+}
+
+/* Sensor Output Grid Metrics rows */
+.sensor-nodes {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    flex-grow: 1;
+}
+
+.sensor-node {
+    background: rgba(255,255,255,0.01);
+    border: 1px solid rgba(255,255,255,0.03);
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.node-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    margin-bottom: 0.6rem;
+}
+
+.node-info span:first-child { color: var(--text-dark); display: flex; align-items: center; gap: 0.5rem; }
+.node-val { font-family: monospace; color: var(--text-neon); font-weight: 600; }
+
+.node-graph {
+    background: rgba(255,255,255,0.03);
+    height: 4px;
+    border-radius: 100px;
+    overflow: hidden;
+}
+
+.graph-bar {
+    height: 100%;
+    width: 0%;
+    background: var(--neon-blue);
+    transition: width 0.1s linear;
+}
+
+.action-zone { margin-top: 1.5rem; }
+
+/* Dashboard Response Diagnostics view UI Elements */
+.matrix-display {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.placeholder-view {
+    text-align: center;
+    color: var(--text-dark);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.placeholder-view i { font-size: 2.2rem; opacity: 0.3; }
+
+.active-telemetry-view {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    animation: panelFadeIn 0.4s ease forwards;
+}
+
+.score-ring {
+    width: 130px;
+    height: 130px;
+    border: 4px solid var(--neon-green);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 20px var(--neon-green-glow);
+}
+
+.score-ring span { font-family: var(--font-display); font-size: 2rem; font-weight: 700; color: var(--neon-green); }
+.score-ring small { font-size: 0.65rem; color: var(--text-dark); text-transform: uppercase; margin-top: -2px; }
+
+.navigation-diagnostics {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+}
+
+.diagnostic-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.95rem;
+    background: rgba(255,255,255,0.02);
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.02);
+}
+
+.diagnostic-row span:first-child { color: var(--text-dark); }
+.text-white { color: var(--text-neon); font-weight: 500; }
+.text-yellow { color: var(--neon-amber); font-weight: 600; }
+.text-green-status { color: var(--neon-green); font-weight: 600; }
+
+@keyframes panelFadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   6. METRIC FOOTER RUNTIME ELEMENTS
+   ========================================================================== */
+footer {
+    margin-top: auto;
+    border-top: 1px solid var(--hud-border);
+    padding: 1.5rem 5%;
+    background: rgba(6, 8, 16, 0.9);
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    color: var(--text-dark);
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.footer-bottom strong { color: var(--neon-blue); font-weight: 600; }
+
+@keyframes pulseGlow {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(0.97); }
+}
+
+/* ==========================================================================
+   7. HUD RESPONSIVE COLLAPSE MATRIX
+   ========================================================================== */
+@media (max-width: 968px) {
+    .hero-section { grid-template-columns: 1fr; text-align: center; padding-top: 3rem; }
+    .hero-content { align-items: center; }
+    .hero-visual { display: none; }
+    .dashboard-grid { grid-template-columns: 1fr; }
+    .creator-meta { gap: 1rem; justify-content: center; }
+    .brand-logo { justify-content: center; }
+    .footer-bottom { flex-direction: column; text-align: center; }
+}

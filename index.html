@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NaviSens AI - Low-Cost Autonomous Navigation</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="radar-bg">
+        <div class="radar-circle rc1"></div>
+        <div class="radar-circle rc2"></div>
+        <div class="radar-line"></div>
+    </div>
+
+    <header>
+        <div class="creator-meta">
+            <div class="meta-item">
+                <i class="fa-solid fa-user-gear"></i>
+                <span>Lead Innovator: <strong>S. OMPRAKASH</strong></span>
+            </div>
+            <div class="meta-item">
+                <i class="fa-solid fa-envelope"></i>
+                <span>Email: <strong>omprakashsololevling@gmail.com</strong></span>
+            </div>
+            <div class="meta-item">
+                <i class="fa-solid fa-phone"></i>
+                <span>Phone: <strong>+91 6381869265</strong></span>
+            </div>
+        </div>
+        <div class="brand-logo">
+            <i class="fa-solid fa-satellite-dish pulse-icon"></i>
+            <span>NaviSens<span class="highlight">AI</span></span>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero" class="hero-section">
+            <div class="hero-content">
+                <span class="tagline"><i class="fa-solid fa-mobile-screen-button"></i> SIH Innovation Hub - Track: Smart Vehicles</span>
+                <h1>Mobile-Powered <br><span class="text-gradient">Autonomous Roads</span></h1>
+                <p>Leveraging internal IMU, GPS, and camera telemetry from low-cost consumer smartphones to calculate sub-meter positioning matrix systems, mapping out real-time safe navigation trajectories without expensive LiDAR rigs.</p>
+                <div class="hero-cta">
+                    <a href="#dashboard" class="btn btn-primary">Launch Live Telemetry <i class="fa-solid fa-gauge-high"></i></a>
+                    <a href="#features" class="btn btn-secondary">Architecture Matrix</a>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="telemetry-card card-top">
+                    <i class="fa-solid fa-gauge-simple-high text-blue"></i>
+                    <div>
+                        <h4>IMU IMU Frequency</h4>
+                        <p id="heroIMU">100 Hz Streaming</p>
+                    </div>
+                </div>
+                <div class="telemetry-card card-bottom">
+                    <i class="fa-solid fa-crosshairs text-green"></i>
+                    <div>
+                        <h4>RTK GPS Accuracy</h4>
+                        <p id="heroGPS">±0.42 Meters</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="dashboard" class="dashboard-section">
+            <div class="section-header">
+                <h2>Sensor Fusion Dashboard</h2>
+                <p>Simulating smartphone sensory payload compilation data pipelines during dynamic road maneuvers.</p>
+            </div>
+
+            <div class="dashboard-grid">
+                <div class="panel glass-panel stream-panel">
+                    <div class="panel-header">
+                        <h3><i class="fa-solid fa-network-wired"></i> Live Sensor Pipeline</h3>
+                        <span class="live-indicator"><span class="dot"></span> LIVE STREAM</span>
+                    </div>
+                    
+                    <div class="sensor-nodes">
+                        <div class="sensor-node" id="nodeAccelerometer">
+                            <div class="node-info">
+                                <span><i class="fa-solid fa-arrows-up-down-left-right"></i> Accelerometer</span>
+                                <span class="node-val" id="accelVal">0.00 m/s²</span>
+                            </div>
+                            <div class="node-graph"><div class="graph-bar" id="accelBar"></div></div>
+                        </div>
+
+                        <div class="sensor-node" id="nodeGyroscope">
+                            <div class="node-info">
+                                <span><i class="fa-solid fa-rotate"></i> Gyroscope</span>
+                                <span class="node-val" id="gyroVal">0.00 rad/s</span>
+                            </div>
+                            <div class="node-graph"><div class="graph-bar" id="gyroBar"></div></div>
+                        </div>
+
+                        <div class="sensor-node" id="nodeGPS">
+                            <div class="node-info">
+                                <span><i class="fa-solid fa-location-dot"></i> Mobile GPS NMEA</span>
+                                <span class="node-val" id="gpsVal">Refreshing...</span>
+                            </div>
+                            <div class="node-graph"><div class="graph-bar" id="gpsBar"></div></div>
+                        </div>
+                    </div>
+
+                    <div class="action-zone">
+                        <button class="btn btn-primary btn-full" id="toggleSimBtn"><i class="fa-solid fa-play"></i> Initialize Autonomous Feed</button>
+                    </div>
+                </div>
+
+                <div class="panel glass-panel status-panel">
+                    <div class="panel-header">
+                        <h3><i class="fa-solid fa-shield-halved"></i> Path Safety Matrix</h3>
+                    </div>
+                    
+                    <div class="matrix-display">
+                        <div class="placeholder-view" id="dashboardPlaceholder">
+                            <i class="fa-solid fa-road-barrier"></i>
+                            <p>Telemetry Offline. Engage the primary feed array to compute autonomous trajectories.</p>
+                        </div>
+
+                        <div class="active-telemetry-view" id="dashboardActiveView" hidden>
+                            <div class="safety-score-container">
+                                <div class="score-ring">
+                                    <span id="safetyScorePercent">0%</span>
+                                    <small>Confidence Level</small>
+                                </div>
+                            </div>
+
+                            <div class="navigation-diagnostics">
+                                <div class="diagnostic-row">
+                                    <span>Trajectory Vector Status:</span>
+                                    <span id="diagStatus" class="status-pill text-yellow">Calculating...</span>
+                                </div>
+                                <div class="diagnostic-row">
+                                    <span>Pothole / Obstacle Index:</span>
+                                    <span id="diagObstacle" class="text-white">Scanning...</span>
+                                </div>
+                                <div class="diagnostic-row">
+                                    <span>Computed Buffer Zone:</span>
+                                    <span id="diagBuffer" class="text-white">Stabilizing...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-bottom">
+            <p>&copy; 2026 NaviSens AI - Smart India Hackathon Prototype Portfolio.</p>
+            <p>Designed and Built for Safe Autonomous Roads by <strong>S. Omprakash</strong></p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
